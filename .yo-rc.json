@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.kruk.paypal"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "PayPal",
+    "packageName": "com.kruk.paypal",
+    "packageFolder": "com/kruk/paypal",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NDVjNTg2YWM3ZjM2MzhiNTk3MmYxMDY3MTMxMmY4ODkwNWQwY2I0N2Y0NDE0ODEyYmRhNTQyYmUwZjU1MmU2Yjg4MjZhMDM1YTVhMmFhOTEyZjI1NzE4MzUyZmFjNjZmODc0OTViNGJkNWE1Njk2OTRhNTQ2MjBhZTViZWYwZWU=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "litera",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1588030294310,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

@@ -1,0 +1,77 @@
+entity PaymentSystem {
+	paymentSystemId Long required unique
+	paymentSystemName String maxlength(50)
+    paymentSystemInfo String maxlength(256)
+}
+
+entity Country {
+	countryId Long required unique
+	countryName String maxlength(50)
+}
+
+entity Bank {
+	bankId Long required unique
+	bankName String maxlength(256)
+    bankInfo String maxlength(256)
+}
+
+entity CreditCard {
+	creditCardId Long required unique
+	creditCardNumber String maxlength(16)
+    creditCardExpirationDate LocalDate
+    creditCardSecurityCode String maxlength(3)
+}
+
+entity Currency {
+	currencyId Long required unique
+	currencyName String maxlength(50)
+    currencyAbreviation String maxlength(3)
+}
+
+entity PaymentAccount {
+	paymentAccountId Long required unique
+	paymentAccountBalance Double
+}
+
+enum PaymentStatus {
+    SUCCESS, FAILED, IN_PROGRESS, PENDING
+}
+
+entity UserAccount {
+	userAccountId Long required unique
+	userEmail String maxlength(50)
+    userPassword String maxlength(256)
+    userFirstName String maxlength(256)
+    userLastName String maxlength(256)
+    userPhoneNumber String maxlength(13)
+}
+
+entity PaymentTransaction {
+	paymentTransactionId Long required unique
+    paymentTransactionDate LocalDate
+    paymentTransactionStartTime Time
+    paymentTransactionEndTime Time
+    paymentTransactionValue Double
+	paymentTransactionDescription String maxlength(256)
+    paymentTransactionStatus PaymentStatus
+}
+
+relationship ManyToMany {
+	UserAccount{paymentAccounts} to PaymentAccount{userAccounts}
+}
+
+relationship OneToMany {
+	Country{banks} to Bank{bankCountry}
+    Country{users} to UserAccount{userCountry}
+    PaymentSystem{creditCards} to CreditCard{creditCardPaymentSystem}
+    Bank{bankCreditCards} to CreditCard{creditCardBank}
+    Currency{currencyPaymentAccounts} to PaymentAccount{paymentAccountCurrency}
+    UserAccount{userAccountCreditCards} to CreditCard{userCreditCard}
+    UserAccount{userTransactions} to PaymentTransaction{paymentTransactionInitiator}
+    PaymentAccount{addresserTransactions} to PaymentTransaction{paymentTransactionAddresser}
+    PaymentAccount{addresseeTransactions} to PaymentTransaction{paymentTransactionAddressee}
+}
+
+filter PaymentTransaction
+paginate PaymentTransaction with infinite-scroll
+service all with serviceImpl
